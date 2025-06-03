@@ -1,0 +1,630 @@
+/* --------------------------------------------------------------------------
+   GLOBAL RESET + VARIABLES
+   ----------------------------------------------------------------------- */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --sidebar-width: 80px;
+  --topbar-height: 60px;
+  --black: #000;
+  --white: #fb00c9;
+  --font-sans: 'Helvetica Neue', Arial, sans-serif;
+
+  /* Genre Card Colors */
+  --color-rap: #8CBF9F;
+  --color-rnb: #B96CB0;
+  --color-rock: #354E30;
+  --color-lofi: #B67D79;
+  --color-afro: #A67C4A;
+  --color-jpop: #A33C11;
+}
+
+html, body {
+  height: 100%;
+}
+
+body {
+  background: var(--black);
+  color: var(--white);
+  font-family: var(--font-sans);
+  overflow-x: hidden;
+}
+
+/* Hide scrollbars (if you want a clean look) */
+::-webkit-scrollbar {
+  width: 0;
+  background: transparent;
+}
+
+/* --------------------------------------------------------------------------
+   SIDEBAR (left)
+   ----------------------------------------------------------------------- */
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: var(--sidebar-width);
+  height: 100vh;
+  background: var(--black);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 20px;
+  border-right: 1px solid var(--white);
+  z-index: 100;
+}
+
+.sidebar .logo,
+.sidebar .profile {
+  width: 40px;
+  height: 40px;
+  margin-bottom: 30px;
+  border: 2px solid var(--white);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  color: var(--white);
+}
+
+.sidebar .logo::before {
+  content: "♫"; /* placeholder for Spotify logo */
+}
+
+.sidebar .nav-icon {
+  width: 45px;
+  height: 45px;
+  margin: 20px 0;
+  border: 2px solid var(--white);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  color: var(--white);
+  cursor: pointer;
+}
+
+.sidebar .nav-icon:nth-child(3) {
+  /* highlight the “Library” icon in white background, black note */
+  background: var(--white);
+  color: var(--black);
+}
+
+/* --------------------------------------------------------------------------
+   TOPBAR (top)
+   ----------------------------------------------------------------------- */
+.topbar {
+  position: fixed;
+  top: 0;
+  left: var(--sidebar-width);
+  right: 0;
+  height: var(--topbar-height);
+  background: var(--black);
+  border-bottom: 1px solid var(--white);
+  display: flex;
+  align-items: center;
+  padding: 0 20px;
+  z-index: 90;
+}
+
+.topbar .search-container {
+  flex: 1;
+  max-width: 600px;
+  margin: 0 auto;
+  position: relative;
+}
+
+.topbar .search-container input {
+  width: 100%;
+  height: 36px;
+  padding: 0 45px 0 40px;
+  background: none;
+  border: 2px solid var(--white);
+  border-radius: 20px;
+  color: var(--white);
+  font-size: 14px;
+  outline: none;
+}
+
+.topbar .search-container input::placeholder {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.topbar .search-container .icon-camera,
+.topbar .search-container .icon-search {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 20px;
+  height: 20px;
+  color: var(--white);
+  font-size: 18px;
+}
+
+.topbar .search-container .icon-camera {
+  left: 12px;
+}
+
+.topbar .search-container .icon-search {
+  right: 12px;
+}
+
+/* Profile icon on right */
+.topbar .profile-top {
+  width: 40px;
+  height: 40px;
+  border: 2px solid var(--white);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 20px;
+  font-size: 18px;
+  color: var(--white);
+}
+
+/* --------------------------------------------------------------------------
+   MAIN CONTENT AREA (shared)
+   ----------------------------------------------------------------------- */
+.main-content {
+  margin-top: var(--topbar-height);
+  margin-left: var(--sidebar-width);
+  padding: 20px;
+  min-height: calc(100vh - var(--topbar-height));
+  color: var(--white);
+}
+
+/* Large heading style (e.g. “LIBRARY”, “RAP”) */
+.main-content h1 {
+  font-size: 48px;
+  margin-bottom: 20px;
+}
+
+/* --------------------------------------------------------------------------
+   1) LIBRARY PAGE
+   ----------------------------------------------------------------------- */
+.library-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: 30px;
+  margin-top: 10px;
+}
+
+.library-item {
+  text-align: center;
+}
+
+.library-item .cover {
+  width: 120px;
+  height: 120px;
+  border: 2px solid var(--white);
+  border-radius: 8px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.library-item .cover::before {
+  content: "♪"; /* placeholder music note */
+  font-size: 36px;
+  color: var(--white);
+}
+
+.library-item .title {
+  margin-top: 8px;
+  font-weight: bold;
+  font-size: 14px;
+}
+
+.library-item .subtitle {
+  font-size: 12px;
+  color: rgba(255,255,255,0.7);
+}
+
+/* --------------------------------------------------------------------------
+   2) RAP PAGE
+   ----------------------------------------------------------------------- */
+.rap-header {
+  width: 100%;
+  background: var(--color-rap);
+  border-radius: 12px;
+  padding: 40px 30px;
+  position: relative;
+  margin-bottom: 40px;
+}
+
+.rap-header h1 {
+  font-size: 60px;
+  color: var(--white);
+}
+
+.new-singles-title {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.new-singles-grid {
+  display: flex;
+  gap: 20px;
+}
+
+.album-card {
+  flex: 1;
+  background: var(--white);
+  color: var(--black);
+  border-radius: 12px;
+  overflow: hidden;
+  position: relative;
+}
+
+.album-card .cover {
+  width: 100%;
+  height: 200px;
+  background-size: cover;
+  background-position: center;
+}
+
+.album-card .cover.placeholder {
+  background: #ccc; /* placeholder if no image */
+}
+
+.album-card .info {
+  padding: 15px;
+}
+
+.album-card .info .name {
+  font-weight: bold;
+  margin-bottom: 8px;
+  font-size: 16px;
+}
+
+.album-card .info .artist {
+  font-size: 14px;
+  margin-bottom: 12px;
+}
+
+.album-card .preview-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  border: 2px solid var(--black);
+  border-radius: 20px;
+  text-decoration: none;
+  color: var(--black);
+  font-size: 14px;
+  position: absolute;
+  bottom: 15px;
+  left: 15px;
+  background: var(--white);
+  transition: background 0.2s, color 0.2s;
+}
+
+.album-card .preview-btn:hover {
+  background: var(--black);
+  color: var(--white);
+}
+
+.album-card .preview-btn::before {
+  content: "▶";
+  font-size: 14px;
+}
+
+/* --------------------------------------------------------------------------
+   3) GENRES PAGE
+   ----------------------------------------------------------------------- */
+.genres-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: repeat(3, 120px);
+  gap: 20px;
+  margin-top: 20px;
+}
+
+.genre-card {
+  position: relative;
+  border-radius: 12px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  padding-left: 20px;
+}
+
+.genre-card h2 {
+  font-size: 36px;
+  color: var(--white);
+  z-index: 1;
+}
+
+/* Each of the six genre backgrounds */
+.genre-rap   { background: var(--color-rap); }
+.genre-rnb   { background: var(--color-rnb); }
+.genre-rock  { background: var(--color-rock); }
+.genre-lofi  { background: var(--color-lofi); }
+.genre-afro  { background: var(--color-afro); }
+.genre-jpop  { background: var(--color-jpop); }
+
+/* Overlapping images (positioned absolutely inside each card) */
+.genre-card img {
+  position: absolute;
+  width: 120px;
+  height: 120px;
+  object-fit: cover;
+  border-radius: 8px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+}
+
+.genre-rap img   { top: -20px; left: calc(100% - 100px); transform: rotate(-15deg); }
+.genre-rnb img   { top: -15px; left: calc(100% - 110px); transform: rotate(20deg); }
+.genre-rock img  { top: -10px; left: calc(100% - 100px); transform: rotate(-10deg); }
+.genre-lofi img  { top: -12px; left: calc(100% - 110px); transform: rotate(15deg); }
+.genre-afro img  { top: -25px; left: calc(100% - 100px); transform: rotate(-25deg); }
+.genre-jpop img  { top: -18px; left: calc(100% - 110px); transform: rotate(18deg); }
+
+/* --------------------------------------------------------------------------
+   4) HOME PAGE
+   ----------------------------------------------------------------------- */
+
+/* Container grid for Home page: two columns */
+.home-container {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 20px;
+}
+
+/* FAVORITE ALBUMS & PLAYLISTS (left top) */
+.favorites {
+  margin-bottom: 30px;
+}
+
+.favorites h2 {
+  font-size: 28px;
+  margin-bottom: 15px;
+}
+
+.fav-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+.fav-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.fav-item .icon {
+  width: 30px;
+  height: 30px;
+  border: 2px solid var(--white);
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+}
+
+.fav-item .icon::before {
+  content: "♪";
+}
+
+/* QUEUE (right top) */
+.queue {
+  margin-bottom: 30px;
+}
+
+.queue h2 {
+  font-size: 28px;
+  margin-bottom: 15px;
+}
+
+.queue-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 12px;
+  color: rgba(255,255,255,0.9);
+}
+
+.queue-item .icon,
+.queue-item .song-icon {
+  width: 30px;
+  height: 30px;
+  border: 2px solid var(--white);
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+}
+
+.queue-item .icon::before {
+  content: "♪";
+}
+
+/* New Songs & Albums for You (left middle) */
+.new-for-you {
+  margin-bottom: 30px;
+}
+
+.new-for-you h2 {
+  font-size: 28px;
+  margin-bottom: 15px;
+}
+
+.new-grid {
+  display: flex;
+  gap: 20px;
+}
+
+.new-card {
+  flex: 1;
+  background: var(--white);
+  color: var(--black);
+  border-radius: 12px;
+  overflow: hidden;
+  position: relative;
+}
+
+.new-card .cover {
+  width: 100%;
+  height: 250px;
+  background-size: cover;
+  background-position: center;
+}
+
+.new-card .cover.placeholder {
+  background: #ccc;
+}
+
+.new-card .info {
+  padding: 15px;
+}
+
+.new-card .info .name {
+  font-weight: bold;
+  margin-bottom: 8px;
+  font-size: 16px;
+}
+
+.new-card .info .artist {
+  font-size: 14px;
+  margin-bottom: 12px;
+}
+
+.new-card .preview-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  border: 2px solid var(--black);
+  border-radius: 20px;
+  text-decoration: none;
+  color: var(--black);
+  font-size: 14px;
+  position: absolute;
+  bottom: 15px;
+  left: 15px;
+  background: var(--white);
+  transition: background 0.2s, color 0.2s;
+}
+
+.new-card .preview-btn:hover {
+  background: var(--black);
+  color: var(--white);
+}
+
+.new-card .preview-btn::before {
+  content: "▶";
+  font-size: 14px;
+}
+
+/* “Because you like Anna Wise” text (faint) */
+.new-for-you h3 {
+  font-size: 14px;
+  color: rgba(255,255,255,0.4);
+  margin-bottom: 10px;
+}
+
+/* UNTHINKABLE (About the artist) box (right middle) */
+.about-artist {
+  background: var(--white);
+  color: var(--black);
+  border-radius: 12px;
+  overflow: hidden;
+  position: relative;
+  margin-bottom: 30px;
+}
+
+.about-artist .cover {
+  width: 100%;
+  height: 200px;
+  background-size: cover;
+  background-position: center;
+}
+
+.about-artist .cover.placeholder {
+  background: #ccc;
+}
+
+.about-artist .info {
+  padding: 15px;
+}
+
+.about-artist .info h2 {
+  font-size: 20px;
+  margin-bottom: 8px;
+}
+
+.about-artist .info p {
+  font-size: 14px;
+  color: rgba(0,0,0,0.7);
+}
+
+/* Bottom “Crybaby” player bar across entire width */
+.now-playing-bar {
+  position: fixed;
+  bottom: 0;
+  left: var(--sidebar-width);
+  right: 0;
+  height: 60px;
+  background: var(--black);
+  border-top: 1px solid var(--white);
+  display: flex;
+  align-items: center;
+  padding: 0 20px;
+  z-index: 100;
+}
+
+.now-playing-bar .song-info {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex: 1;
+}
+
+.now-playing-bar .song-info .thumbnail {
+  width: 40px;
+  height: 40px;
+  border: 2px solid var(--white);
+  border-radius: 4px;
+  background: #555;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.now-playing-bar .song-info .thumbnail::before {
+  content: "♪";
+  font-size: 18px;
+  color: var(--white);
+}
+
+.now-playing-bar .song-info .title {
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.now-playing-bar .song-info .artist {
+  font-size: 14px;
+  color: rgba(255,255,255,0.7);
+}
+
+.now-playing-bar .controls {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  font-size: 20px;
+}
+
+.now-playing-bar .controls .btn {
+  cursor: pointer;
+}
