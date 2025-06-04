@@ -11,7 +11,7 @@
   --sidebar-width: 80px;
   --topbar-height: 60px;
   --black: #000;
-  --white: #fb00c9;
+  --white: #ffffff;
   --font-sans: 'Helvetica Neue', Arial, sans-serif;
 
   /* Genre Card Colors */
@@ -368,18 +368,16 @@ body {
 .genre-afro img  { top: -25px; left: calc(100% - 100px); transform: rotate(-25deg); }
 .genre-jpop img  { top: -18px; left: calc(100% - 110px); transform: rotate(18deg); }
 
-/* --------------------------------------------------------------------------
-   4) HOME PAGE
-   ----------------------------------------------------------------------- */
+/* 4) HOME PAGE*/
 
-/* Container grid for Home page: two columns */
+/* Container grid for Home page two columns */
 .home-container {
   display: grid;
   grid-template-columns: 2fr 1fr;
   gap: 20px;
 }
 
-/* FAVORITE ALBUMS & PLAYLISTS (left top) */
+/* FAVORITE ALBUMS & PLAYLISTS */
 .favorites {
   margin-bottom: 30px;
 }
@@ -416,7 +414,7 @@ body {
   content: "♪";
 }
 
-/* QUEUE (right top) */
+/* QUEUE */
 .queue {
   margin-bottom: 30px;
 }
@@ -450,7 +448,7 @@ body {
   content: "♪";
 }
 
-/* New Songs & Albums for You (left middle) */
+/* New Songs and Albums for You*/
 .new-for-you {
   margin-bottom: 30px;
 }
@@ -527,14 +525,14 @@ body {
   font-size: 14px;
 }
 
-/* “Because you like Anna Wise” text (faint) */
+/* “Because you like Anna Wise” text  */
 .new-for-you h3 {
   font-size: 14px;
   color: rgba(255,255,255,0.4);
   margin-bottom: 10px;
 }
 
-/* UNTHINKABLE (About the artist) box (right middle) */
+/* UNTHINKABLE About the artist box  */
 .about-artist {
   background: var(--white);
   color: var(--black);
@@ -569,7 +567,7 @@ body {
   color: rgba(0,0,0,0.7);
 }
 
-/* Bottom “Crybaby” player bar across entire width */
+/* Bottom Crybaby player bar across entire width */
 .now-playing-bar {
   position: fixed;
   bottom: 0;
