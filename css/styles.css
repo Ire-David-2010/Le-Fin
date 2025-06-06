@@ -652,13 +652,12 @@ body {
   align-items: center;
   justify-content: center;
   height: 100vh;
-  background: var(--black);
   color: var(--white);
 }
 
 .login-container {
   width: 320px;
-  background: #111;                  
+  background-color: rgba(17, 17, 17, 0.85); 
   border: 2px solid var(--white);
   border-radius: 12px;
   padding: 30px 25px;
@@ -675,6 +674,7 @@ body {
 .login-container .input-group {
   margin-bottom: 20px;
   text-align: left;
+
 }
 
 .login-container .input-group label {
