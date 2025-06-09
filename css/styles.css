@@ -738,3 +738,306 @@ body {
 .login-page .topbar {
   display: none;
 }
+
+/* --- VIDEO EMBED --- */
+.video-container {
+  margin-bottom: 20px;
+}
+.video-container iframe {
+  width: 100%;
+  height: 200px;         /* adjust height as you like */
+  border: none;
+  border-radius: 12px;
+}
+
+/* --- SECTION DIVIDER --- */
+.section-divider {
+  border: none;
+  border-top: 1px solid rgba(255, 255, 255, 0.5);
+  margin: 20px 0;
+}
+
+/* --- QUEUE (now lower) spacing --- */
+.queue {
+  margin-top: 20px;     /* add space above queue */
+}
+/* ——— SIDEBAR TOOLTIP (flush right) ——— */
+.sidebar a {
+  position: relative;
+}
+
+/* tooltip bubble */
+.sidebar a::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  left: 100%;              /* immediately to the right of the icon */
+  top: 50%;
+  transform: translateY(-50%);
+  margin-left: 4px;        /* small gap */
+  background: var(--white);
+  color: var(--black);
+  padding: 4px 8px;
+  border-radius: 4px;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.15s ease-in-out;
+  font-size: 12px;
+  z-index: 200;
+}
+
+/* show on hover */
+.sidebar a:hover::after {
+  opacity: 1;
+}
+
+/* ——— FAVORITE ALBUMS AND PLAYLIST ——— */
+.fav-list .fav-item {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  grid-template-rows: auto auto;
+  grid-template-areas:
+    "icon title"
+    "icon artist";
+  column-gap: 12px;
+  align-items: center;
+}
+
+/* enlarge the album “icon” */
+.fav-list .fav-item .icon {
+  grid-area: icon;
+  width: 50px;    /* adjust bigger or smaller as you like */
+  height: 50px;
+  font-size: 32px;
+}
+
+/* album title to the right, top row */
+.fav-list .fav-item .title {
+  grid-area: title;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+/* artist name under the title, gray like “Because you like Anna Wise” */
+.fav-list .fav-item .artist {
+  grid-area: artist;
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.4);
+}
+
+/* ——— MORE SPACE BETWEEN FAVORITE ITEMS ——— */
+.fav-list {
+  gap: 32px;  /* was 15px (or whatever your default), now more room between each item */
+}
+
+.fav-list {
+  /* first value = row gap, second = column gap */
+  gap: 24px 48px;
+}
+
+.video-container {
+  margin-bottom: 20px;
+}
+.video-container iframe {
+  width: 100%;      /* fills the right-column width */
+  height: 200px;    
+  border: none;
+  border-radius: 12px;
+}
+
+/* ——— FAVORITE ALBUMS HOVER (DARK BG OPTIMIZED) ——— */
+.fav-list .fav-item {
+  /* add a bit of padding and rounding so the bg highlight looks nice */
+  padding: 6px;
+  border-radius: 8px;
+  transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+.fav-list .fav-item:hover {
+  /* gentle lift */
+  transform: translateY(-3px);
+  /* very subtle white overlay */
+  background-color: rgba(214, 214, 214, 0.534);
+}
+
+/* add a bit of shadow under the icon on hover */
+.fav-list .fav-item .icon {
+  transition: filter 0.2s ease;
+}
+
+.fav-list .fav-item:hover .icon {
+  /* a soft, dark drop-shadow to make the icon pop */
+  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.6));
+}
+
+
+
+/* New Songs & Albums grid: three equal cards */
+.new-for-you .new-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+/* Card container holds only the cover image and overlays */
+.new-card {
+  position: relative;
+  overflow: hidden;
+}
+
+/* Full-bleed cover image (no white background) */
+.new-card .cover {
+  width: 100%;
+  height: 300px;           /* match your wireframe’s aspect ratio */
+  background-size: cover;
+  background-position: center;
+}
+
+/* “Because you like…” badge inside first card */
+.new-card .like-label {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  background: rgba(255, 255, 255, 0.85);
+  color: var(--black);
+  padding: 4px 8px;
+  border-radius: 8px;
+  font-size: 12px;
+  z-index: 5;
+}
+
+/* Overlay top text + icon */
+.new-card .overlay-top {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.new-card .overlay-top .icon {
+  width: 30px;
+  height: 30px;
+  border: 2px solid var(--white);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.new-card .overlay-top .icon::before {
+  content: "♪";
+}
+
+.new-card .overlay-top .text .name {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.new-card .overlay-top .text .artist {
+  font-size: 14px;
+}
+
+/* Preview button on the cover */
+.new-card .preview-btn {
+  position: absolute;
+  bottom: 12px;
+  left: 12px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(255, 255, 255, 0.85);
+  color: var(--black);
+  border: 2px solid var(--black);
+  padding: 8px 12px;
+  border-radius: 20px;
+  text-decoration: none;
+  font-size: 14px;
+  z-index: 5;
+}
+
+.new-card .preview-btn::before {
+  content: "▶";
+}
+
+
+/* SCROLL CONTAINER + ARROW */
+.scroll-wrapper {
+  position: relative;
+  margin: 0 -20px;             /* stretch edges to align arrows */
+  padding: 0 20px;
+}
+.new-grid {
+  display: flex;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+}
+.new-grid::-webkit-scrollbar {
+  display: none;
+}
+
+.scroll-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(255,255,255,0.9);
+  color: var(--black);
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  cursor: pointer;
+  z-index: 10;
+}
+.left-arrow { left: 0; }
+.right-arrow { right: 0; }
+
+/* LIKE LABEL (plain white text with drop-shadow) */
+.like-label {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  color: var(--white);
+  text-shadow: 0 0 4px rgba(0,0,0,0.7);
+  font-size: 12px;
+  font-weight: 500;
+  z-index: 5;
+}
+
+/* OVERLAY TEXT + ICON (white) */
+.overlay-top .icon {
+  border-color: var(--white);
+  color: var(--white);
+}
+.overlay-top .text .name {
+  color: var(--white);
+  font-size: 18px;
+  font-weight: bold;
+  text-shadow: 0 0 4px rgba(0,0,0,0.7);
+}
+.overlay-top .text .artist {
+  color: var(--white);
+  font-size: 14px;
+  text-shadow: 0 0 4px rgba(0,0,0,0.7);
+}
+
+/* PREVIEW BUTTON (white border + text) */
+.preview-btn {
+  background: transparent;
+  color: var(--white);
+  border: 2px solid var(--white);
+}
+.preview-btn:hover {
+  background: var(--white);
+  color: var(--black);
+}
+.preview-btn::before {
+  content: "▶";
+  color: var(--white);
+}
+.preview-btn:hover::before {
+  color: var(--black);
+}
