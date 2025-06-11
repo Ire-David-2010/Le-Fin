@@ -91,7 +91,7 @@
   <div class="topbar">
     <div class="search-container">
       <input type="text" placeholder="Search" />
-      <div class="icon-camera">📚</div>
+      <a href="genres.html" class="icon-camera">📚</a>
       <div class="icon-search">🔍</div>
     </div>
     <div class="profile-top"></div>
@@ -107,7 +107,36 @@
         <div class="favorites">
           <h2>FAVORITE ALBUMS AND PLAYLISTS</h2>
           <div class="fav-list">
-            <!-- ... existing fav items ... -->
+            <div class="fav-item">
+              <div class="icon"></div>
+              <div class="title">Gear 5</div>
+              <div class="artist">I.D</div>
+            </div>
+            <div class="fav-item">
+              <div class="icon"></div>
+              <div class="title">The Best of West</div>
+              <div class="artist">I.D</div>
+            </div>
+            <div class="fav-item">
+              <div class="icon"></div>
+              <div class="title">DONDA</div>
+              <div class="artist">Kanye West</div>
+            </div>
+            <div class="fav-item">
+              <div class="icon"></div>
+              <div class="title">Serenate me</div>
+              <div class="artist">I.D</div>
+            </div>
+            <div class="fav-item">
+              <div class="icon"></div>
+              <div class="title">SOS</div>
+              <div class="artist">SZA</div>
+            </div>
+            <div class="fav-item">
+              <div class="icon"></div>
+              <div class="title">ye</div>
+              <div class="artist">Kanye West</div>
+            </div>
           </div>
         </div>
 
@@ -219,18 +248,56 @@
 
   <script>
     function scrollNext() {
-      const container = document.querySelector('.new-grid');
-      const card = container.querySelector('.new-card');
-      const gap = parseInt(getComputedStyle(container.parentElement).paddingLeft) * 2 || 40;
-      container.scrollBy({ left: card.offsetWidth + gap, behavior: 'smooth' });
+  const container = document.querySelector('.new-grid');
+  console.log('Current Scroll:', container.scrollLeft); // Debug position
+  // Store current position
+  let currentScroll = 0;
+  
+  function scrollNext() {
+    const container = document.querySelector('.new-grid');
+    const cards = document.querySelectorAll('.new-card');
+    const cardWidth = cards[0].offsetWidth;
+    const gap = 20; // Matches your CSS gap
+    
+    // Calculate scroll distance for one card + gap
+    const scrollAmount = cardWidth + gap;
+    
+    // Update scroll position
+    currentScroll += scrollAmount;
+    
+    // If at end, reset to start for infinite loop
+    if (currentScroll >= container.scrollWidth - container.offsetWidth) {
+      currentScroll = 0;
     }
-    function scrollPrev() {
-      const container = document.querySelector('.new-grid');
-      const card = container.querySelector('.new-card');
-      const gap = parseInt(getComputedStyle(container.parentElement).paddingLeft) * 2 || 40;
-      container.scrollBy({ left: -card.offsetWidth - gap, behavior: 'smooth' });
+    
+    container.scrollTo({
+      left: currentScroll,
+      behavior: 'smooth'
+    });
+  }
+
+  function scrollPrev() {
+    const container = document.querySelector('.new-grid');
+    const cards = document.querySelectorAll('.new-card');
+    const cardWidth = cards[0].offsetWidth;
+    const gap = 20;
+    
+    const scrollAmount = cardWidth + gap;
+    
+    currentScroll -= scrollAmount;
+    
+    // If at start, go to end for infinite loop
+    if (currentScroll < 0) {
+      currentScroll = container.scrollWidth - container.offsetWidth;
     }
-  </script>
+    
+    container.scrollTo({
+      left: currentScroll,
+      behavior: 'smooth'
+    });
+  }
+  
+</script>
 <footer class="site-footer">
     <div class="footer-content">
       <p>&copy; 2025 SPOTIFY. All rights reserved.</p>

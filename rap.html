@@ -29,7 +29,7 @@
   <div class="topbar">
     <div class="search-container">
       <input type="text" placeholder="Search" />
-      <div class="icon-camera">📚</div>
+      <a href="genres.html" class="icon-camera">📚</a>
       <div class="icon-search">🔍</div>
     </div>
     <div class="profile-top"></div>
@@ -44,38 +44,103 @@
     </div>
   
 
-    <!-- New singles and albums -->
-    <div class="new-singles-title">New singles and albums</div>
-    <div class="new-singles-grid">
-      <!-- The Battle -->
-      <div class="album-card">
-        <div class="cover" style="background-image: url('images/Throne\ of\ Broken\ Glory.png');"></div>
-        <div class="info">
-          <div class="name">The Battle</div>
-          <div class="artist">Omari St Lawrence</div>
+
+  <div class="new-singles-title">New singles and albums</div>
+          <div class="scroll-wrapper">
+            <div class="scroll-arrow left-arrow" onclick="scrollPrev()">←</div>
+            <div class="new-grid">
+              <!-- Vancouver (with Anna Wise label at top-right) -->
+              <div class="new-card new-card-large">
+                <div class="cover" style="background-image: url('images/Throne\ of\ Broken\ Glory.png');">
+                  <div class="overlay-top">
+                    <div class="icon"></div>
+                    <div class="text">
+                      <div class="name">The Battle</div>
+                      <div class="artist">Omari St Lawrence</div>
+                    </div>
+                  </div>
+                  <a href="#" class="preview-btn">Preview</a>
+                </div>
+              </div>
+              <!-- The Battle -->
+              <div class="new-card">
+                <div class="cover" style="background-image: url('images/car.png');">
+                  <div class="overlay-top">
+                    <div class="icon"></div>
+                    <div class="text">
+                      <div class="name">Pricey</div>
+                      <div class="artist">LeVon Lenord</div>
+                    </div>
+                  </div>
+                  <a href="#" class="preview-btn">Preview</a>
+                </div>
+              </div>
+              <!-- Circles -->
+              <div class="new-card">
+                <div class="cover" style="background-image: url('images/Untitled\ design\ \(3\).png');">
+                  <div class="overlay-top">
+                    <div class="icon"></div>
+                    <div class="text">
+                      <div class="name">Riot</div>
+                      <div class="artist">K-ROCK</div>
+                    </div>
+                  </div>
+                  <a href="#" class="preview-btn">Preview</a>
+                </div>
+              </div>
+            </div>
+            <div class="scroll-arrow right-arrow" onclick="scrollNext()">→</div>
+          </div>
         </div>
-        <a href="#" class="preview-btn">Preview</a>
       </div>
-      <!--  Pricey  -->
-      <div class="album-card">
-        <div class="cover" style="background-image: url('images/car.png');"></div>
-        <div class="info">
-          <div class="name">Pricey</div>
-          <div class="artist">LeVon Lenord</div>
-        </div>
-        <a href="#" class="preview-btn">Preview</a>
-      </div>
-      <!-- Riot -->
-      <div class="album-card">
-        <div class="cover" style="background-image: url('images/Untitled\ design\ \(3\).png');"></div>
-        <div class="info">
-          <div class="name">Riot</div>
-          <div class="artist">K-ROCK</div>
-        </div>
-        <a href="#" class="preview-btn">Preview</a>
-      </div>
-    </div>
-  </div>
+  <script>
+  // Store current position
+  let currentScroll = 0;
+  
+  function scrollNext() {
+    const container = document.querySelector('.new-grid');
+    const cards = document.querySelectorAll('.new-card');
+    const cardWidth = cards[0].offsetWidth;
+    const gap = 20; // Matches your CSS gap
+    
+    // Calculate scroll distance for one card + gap
+    const scrollAmount = cardWidth + gap;
+    
+    // Update scroll position
+    currentScroll += scrollAmount;
+    
+    // If at end, reset to start for infinite loop
+    if (currentScroll >= container.scrollWidth - container.offsetWidth) {
+      currentScroll = 0;
+    }
+    
+    container.scrollTo({
+      left: currentScroll,
+      behavior: 'smooth'
+    });
+  }
+
+  function scrollPrev() {
+    const container = document.querySelector('.new-grid');
+    const cards = document.querySelectorAll('.new-card');
+    const cardWidth = cards[0].offsetWidth;
+    const gap = 20;
+    
+    const scrollAmount = cardWidth + gap;
+    
+    currentScroll -= scrollAmount;
+    
+    // If at start, go to end for infinite loop
+    if (currentScroll < 0) {
+      currentScroll = container.scrollWidth - container.offsetWidth;
+    }
+    
+    container.scrollTo({
+      left: currentScroll,
+      behavior: 'smooth'
+    });
+  }
+</script>
     <footer class="site-footer">
     <div class="footer-content">
       <p>&copy; 2025 SPOTIFY. All rights reserved.</p>
