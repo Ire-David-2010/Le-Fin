@@ -586,7 +586,7 @@ body {
   color: rgba(0,0,0,0.7);
 }
 
-/* Bottom Crybaby player bar across entire width */
+/* Bottom player bar across entire width */
 .now-playing-bar {
   position: fixed;
   bottom: 0;
@@ -1042,24 +1042,84 @@ body {
   color: var(--black);
 }
 
-/* Move “Because you like Anna Wise” to top-right with padding */
-.new-card-large .cover .like-label {
-  position: absolute;
-  top: 12px;
-  right: 12px;
-  left: auto;             /* cancel any previous left positioning */
-  padding: 4px 8px;       /* restore padding */
-  background: none;       /* keep it plain white text */
-  color: #fff;
-  font-size: 20px;
-  font-weight: 500;
-  text-shadow: 0 0 4px rgba(0,0,0,0.7);
-  z-index: 2;
+/* hover*/
+
+.library-item {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
 }
 
-.new-card-large .cover .like-label {
-  background: none !important;
-  border: none     !important;
-  color: rgba(255, 255, 255, 0.6) !important;
-  text-shadow: none     !important;
+.library-item:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+.sidebar a {
+  transition: transform 0.3s ease, filter 0.3s ease;
+}
+
+.sidebar a:hover {
+  transform: scale(1.15);
+  filter: brightness(1.2);
+}
+
+.search-container input {
+  transition: box-shadow 0.3s ease;
+}
+
+.search-container input:focus,
+.search-container input:hover {
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+  outline: none;
+}
+
+[data-tooltip] {
+  position: relative;
+}
+
+[data-tooltip]:hover::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  left: 100%;
+  top: 50%;
+  transform: translateY(-50%);
+  margin-left: 8px;
+  background: #222;
+  color: #fff;
+  padding: 4px 8px;
+  border-radius: 4px;
+  white-space: nowrap;
+  font-size: 12px;
+  pointer-events: none;
+  opacity: 1;
+  z-index: 10;
+}
+
+/* Base hover effect */
+.library-item {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+}
+
+.library-item:hover {
+  transform: scale(1.05);
+}
+
+/* SITE FOOTER */
+.site-footer {
+  background: var(--black);
+  border-top: 1px solid var(--white);
+  padding: 20px 0;
+  color: var(--white);
+  font-size: 14px;
+}
+
+.footer-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
 }
