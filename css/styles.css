@@ -1,11 +1,58 @@
+
+:root {
+  --bg-color: #000;
+  --text-color: #fff;
+  --card-bg: #111;
+  --border-color: #fff;
+  --accent-color: #ff4c4c;
+}
+
+body.light-mode {
+  --bg-color: #f4f4f4;
+  --text-color: #111;
+  --card-bg: #fff;
+  --border-color: #000;
+  --accent-color: #c62828;
+}
+
+body {
+  background: var(--bg-color);
+  color: var(--text-color);
+  font-family: var(--font-sans);
+  overflow-x: hidden;
+}
+
+.toggle-theme-btn {
+  margin-left: auto;
+  padding: 6px 12px;
+  border: 2px solid var(--text-color);
+  color: var(--text-color);
+  border-radius: 20px;
+  background: transparent;
+  cursor: pointer;
+  transition: background 0.3s, color 0.3s;
+}
+
+body.light-mode .toggle-theme-btn:hover {
+  background: var(--text-color);
+  color: var(--bg-color);
+}
+
+
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@500;700&display=swap');
 
 @import url('https://fonts.googleapis.com/css2?family=Archivo+Black&display=swap');
 
 :root {
   --accent-red: #ff4c4c;
-  --text-light: #ffffff;
-  --background-dark: #000000;
+
+  /* Dark Theme Defaults */
+  --background-color: #000000;
+  --text-color: #ffffff;
+
+  /* Light Theme (used only when .light-mode class is added to <body>) */
+  --background-color-light: #f4f4f4;
+  --text-color-light: #000000;
 }
 
 body {
@@ -232,7 +279,7 @@ body {
 }
 
 .library-item .cover::before {
-  content: "♪"; 
+  content: ""; 
   font-size: 36px;
   color: var(--white);
 }
@@ -459,7 +506,7 @@ body {
   font-size: 16px;
 }
 
-.fav-item .icon::before {
+/*.fav-item .icon::before {
   content: "♪";
 }
 
@@ -496,6 +543,7 @@ body {
 .queue-item .icon::before {
   content: "♪";
 }
+  
 
 /* New Songs and Albums for You*/
 .new-for-you {
@@ -1108,6 +1156,8 @@ body {
   padding: 20px 0;
   color: var(--white);
   font-size: 14px;
+  position: relative;
+  bottom: 0;
 }
 
 .footer-content {
@@ -1162,3 +1212,32 @@ body {
   opacity: 0.9;
 }
 
+body.light-mode {
+  --background-color: var(--background-color-light);
+  --text-color: var(--text-color-light);
+}
+
+body.light-mode .sidebar,
+body.light-mode .topbar {
+  background: var(--background-color-light);
+  border-color: var(--text-color-light);
+}
+
+body.light-mode .sidebar .logo,
+body.light-mode .sidebar .profile,
+body.light-mode .sidebar .nav-icon,
+body.light-mode .topbar .profile-top,
+body.light-mode .topbar .search-container input {
+  border-color: var(--text-color-light);
+  color: var(--text-color-light);
+}
+
+body.light-mode h1, 
+body.light-mode h2, 
+body.light-mode h3 {
+  color: var(--accent-red);
+}
+
+body.light-mode .sidebar .logo::before {
+  color: var(--accent-red);
+}

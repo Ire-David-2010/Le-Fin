@@ -54,6 +54,9 @@
       <a href="genres.html" class="icon-camera">📚</a>
       <div class="icon-search">🔍</div>
     </div>
+    <button onclick="toggleTheme()" style="margin-left: auto; background: none; color: inherit; border: 2px solid currentColor; padding: 6px 12px; border-radius: 20px; cursor: pointer;">
+  Toggle Light Mode
+</button>
     <div class="profile-top"></div>
   </div>
 
@@ -121,6 +124,17 @@
       <p>&copy; 2025 SPOTIFY. All rights reserved.</p>
     </div>
   </footer>
+<script>
+  // Set theme on load
+  if (localStorage.getItem('theme') === 'light') {
+    document.body.classList.add('light-mode');
+  }
+
+  function toggleTheme() {
+    document.body.classList.toggle('light-mode');
+    localStorage.setItem('theme', document.body.classList.contains('light-mode') ? 'light' : 'dark');
+  }
+</script>
 </body>
 </html>
 </body>

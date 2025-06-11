@@ -33,6 +33,9 @@
       <a href="genres.html" class="icon-camera">📚</a>
       <div class="icon-search">🔍</div>
     </div>
+    <button onclick="toggleTheme()" style="margin-left: auto; background: none; color: inherit; border: 2px solid currentColor; padding: 6px 12px; border-radius: 20px; cursor: pointer;">
+  Toggle Light Mode
+</button>
     <div class="profile-top"></div>
   </div>
 
@@ -41,42 +44,42 @@
   <h1 >LIBRARY</h1>
   <div class="library-grid">
     <div class="library-item kanye">
-      <div class="cover"></div>
+      <div class="cover"  style="background-image: url(https://upload.wikimedia.org/wikipedia/en/0/03/Yeezus_album_cover.png); background-size: cover"></div>
       <div class="title">YEEZUS</div>
       <div class="subtitle">Kanye West</div>
     </div>
     <div class="library-item kanye">
-      <div class="cover"></div>
+      <div class="cover"  style="background-image: url(https://www.hindustantimes.com/ht-img/img/2025/06/11/550x309/FILES-ENTERTAINMENT-US-MUSIC-RACISM-WEST-0_1747717729847_1749656493666.jpg); background-size: cover"></div>
       <div class="title">Kanye West</div>
       <div class="subtitle">Artist</div>
     </div>
     <div class="library-item mac">
-      <div class="cover"></div>
+      <div class="cover"   style="background-image: url(https://upload.wikimedia.org/wikipedia/en/c/cb/Mac_Miller_-_Balloonerism.png); background-size: cover"></div>
       <div class="title">Ballonerisim</div>
       <div class="subtitle">Mac Miller</div>
     </div>
     <div class="library-item tyler">
-      <div class="cover"></div>
+      <div class="cover"  style="background-image: url(https://upload.wikimedia.org/wikipedia/en/5/51/Igor_-_Tyler%2C_the_Creator.jpg); background-size: cover"></div>
       <div class="title">IGOR</div>
       <div class="subtitle">Tyler the Creator</div>
     </div>
     <div class="library-item tyler">
-      <div class="cover"></div>
+      <div class="cover"   style="background-image: url(https://img.redbull.com/images/c_crop,w_4044,h_2022,x_0,y_1581/c_auto,w_1200,h_600/f_auto,q_auto/redbullcom/2019/10/09/c7cfae77-17b1-46d9-aee0-f48944c9ce9b/tyler-the-creator); background-size: cover"></div>
       <div class="title">Tyler the Creator</div>
       <div class="subtitle">Artist</div>
     </div>
     <div class="library-item frank">
-      <div class="cover"></div>
+      <div class="cover"   style="background-image: url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSAHTfQIJoOUdl1nzfJIykKGhex2DOzm-xymt1teUCcFrE2VlYfGbASqK1bZqJxZlscHQ4d0gEgNNyiBFCXFr3AEw); background-size: cover"></div>
       <div class="title">Frank Ocean</div>
       <div class="subtitle">Artist</div>
     </div>
     <div class="library-item kendrick">
-      <div class="cover"></div>
+      <div class="cover"  style="background-image: url(https://hips.hearstapps.com/hmg-prod/images/kendrick-lamar-at-the-67th-grammy-awards-held-at-the-crypto-news-photo-1738959019.pjpeg?crop=1.00xw:0.667xh;0,0.0715xh&resize=640:*); background-size: cover"></div>
       <div class="title">DAMN.</div>
       <div class="subtitle">Kendrick Lamar</div>
     </div>
     <div class="library-item kanye">
-      <div class="cover"></div>
+      <div class="cover"  style="background-image: url(https://upload.wikimedia.org/wikipedia/en/7/70/Graduation_%28album%29.jpg); background-size: cover"></div>
       <div class="title">Graduation</div>
       <div class="subtitle">Kanye West</div>
     </div>
@@ -137,5 +140,16 @@
       <p>&copy; 2025 SPOTIFY. All rights reserved.</p>
     </div>
   </footer>
+<script>
+  // Set theme on load
+  if (localStorage.getItem('theme') === 'light') {
+    document.body.classList.add('light-mode');
+  }
+
+  function toggleTheme() {
+    document.body.classList.toggle('light-mode');
+    localStorage.setItem('theme', document.body.classList.contains('light-mode') ? 'light' : 'dark');
+  }
+</script>
 </body>
 </html>
