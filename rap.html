@@ -4,6 +4,28 @@
   <meta charset="UTF-8" />
   <title>Rap</title>
   <link rel="stylesheet" href="css/styles.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;700&display=swap" rel="stylesheet">
+  <style>
+  .new-card .preview-btn {
+    background: transparent !important;
+    color: #fff !important;
+    border: 2px solid #fff !important;
+  }
+
+  .new-card .preview-btn::before {
+    color: #fff !important;
+  }
+
+  .new-card .preview-btn:hover {
+    background: #fff !important;
+    color: #000 !important;
+  }
+
+  .new-card .preview-btn:hover::before {
+    color: #000 !important;
+  }
+</style>
+
 </head>
 <body>
   <!-- SIDEBAR -->
@@ -40,16 +62,16 @@
     <!-- RAP HEADER -->
     
     <div class="rap-header">
-      <h1>RAP</h1>
+      <h1 >RAP</h1>
     </div>
   
 
 
   <div class="new-singles-title">New singles and albums</div>
           <div class="scroll-wrapper">
-            <div class="scroll-arrow left-arrow" onclick="scrollPrev()">←</div>
+            
             <div class="new-grid">
-              <!-- Vancouver (with Anna Wise label at top-right) -->
+              
               <div class="new-card new-card-large">
                 <div class="cover" style="background-image: url('images/Throne\ of\ Broken\ Glory.png');">
                   <div class="overlay-top">
@@ -68,8 +90,8 @@
                   <div class="overlay-top">
                     <div class="icon"></div>
                     <div class="text">
-                      <div class="name">Pricey</div>
-                      <div class="artist">LeVon Lenord</div>
+                      <div class="name">Priceless</div>
+                      <div class="artist">LeVon East</div>
                     </div>
                   </div>
                   <a href="#" class="preview-btn">Preview</a>
@@ -89,58 +111,11 @@
                 </div>
               </div>
             </div>
-            <div class="scroll-arrow right-arrow" onclick="scrollNext()">→</div>
+            
           </div>
         </div>
       </div>
-  <script>
-  // Store current position
-  let currentScroll = 0;
   
-  function scrollNext() {
-    const container = document.querySelector('.new-grid');
-    const cards = document.querySelectorAll('.new-card');
-    const cardWidth = cards[0].offsetWidth;
-    const gap = 20; // Matches your CSS gap
-    
-    // Calculate scroll distance for one card + gap
-    const scrollAmount = cardWidth + gap;
-    
-    // Update scroll position
-    currentScroll += scrollAmount;
-    
-    // If at end, reset to start for infinite loop
-    if (currentScroll >= container.scrollWidth - container.offsetWidth) {
-      currentScroll = 0;
-    }
-    
-    container.scrollTo({
-      left: currentScroll,
-      behavior: 'smooth'
-    });
-  }
-
-  function scrollPrev() {
-    const container = document.querySelector('.new-grid');
-    const cards = document.querySelectorAll('.new-card');
-    const cardWidth = cards[0].offsetWidth;
-    const gap = 20;
-    
-    const scrollAmount = cardWidth + gap;
-    
-    currentScroll -= scrollAmount;
-    
-    // If at start, go to end for infinite loop
-    if (currentScroll < 0) {
-      currentScroll = container.scrollWidth - container.offsetWidth;
-    }
-    
-    container.scrollTo({
-      left: currentScroll,
-      behavior: 'smooth'
-    });
-  }
-</script>
     <footer class="site-footer">
     <div class="footer-content">
       <p>&copy; 2025 SPOTIFY. All rights reserved.</p>
