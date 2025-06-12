@@ -20,6 +20,8 @@ body.light-mode {
   --sidebar-bg: #f4f4f4;         /* Sidebar background for light mode */
   --topbar-bg: #f4f4f4;          /* Topbar background for light mode */
   --now-playing-bg: #f4f4f4;     /* Now playing bar background in light mode */
+  --button-color: #000;
+  
 }
 
 /* Apply theme variables to sidebar, topbar, and now playing bar */
@@ -38,7 +40,7 @@ body.light-mode {
 /* Set general body styles based on theme */
 body {
   background: var(--bg-color);   /* Background based on current mode */
-  color: var(--text-color);      /* Text color based on current mode */
+  color: var(--text-color);     /* Text color based on current mode */
   letter-spacing: 0.3px;         /* Adds space between letters */
   word-spacing: 0.6px;           /* Adds space between words */
   line-height: 1.6;              /* Controls spacing between lines of text */
@@ -124,12 +126,7 @@ body.light-mode .toggle-theme-btn {
   --text-color-light: #000000;        /* Dark text for light mode */
 }
 
-/* Base styles for body tag */
-body {
-  background-color: var(--background-dark); /* ← This var isn’t declared. Consider fixing. */
-  color: var(--text-light);                 /* ← Also undeclared. Should be --text-color. */
-  font-family: 'Poppins', sans-serif;
-}
+
 
 /* Heading text styles */
 h1, h2, h3, h4, h5, h6 {
@@ -168,9 +165,9 @@ html, body {
 
 /* Set default styles again — some are overridden by previous body tag */
 body {
-  background: var(--black);         /* Black background */
-  color: var(--white);              /* White text */
-  font-family: var(--font-sans);    /* Use fallback font */
+  background: var(--bg-color);        /* Black background */
+  color: var(--text-color);              /* White text */
+  font-family: var(--font-sans);       /* Use fallback font */
   overflow-x: hidden;               /* Prevent sideways scroll */
 }
 
@@ -352,14 +349,16 @@ body {
 /* Each item inside the library */
 .library-item {
   text-align: center;                                    /* Center text under image */
+  color: var(--text-color);                              /*Text adapts to theme */
 }
 
 /* Album or playlist cover box */
 .library-item .cover {
   width: 120px;
   height: 120px;
-  border: 2px solid var(--white);                       /* White outline */
-  border-radius: 8px;                                   /* Rounded corners */
+  background: var(--card-bg);                            /* Theme-aware background */
+  border: 2px solid var(--border-color);                 /* Theme-aware border */
+  border-radius: 8px;                                    /* Rounded corners */
   margin: 0 auto;
   display: flex;
   align-items: center;
@@ -370,7 +369,7 @@ body {
 .library-item .cover::before {
   content: "";                                          /* Placeholder, can be set */
   font-size: 36px;
-  color: var(--white);
+  color: var(--text-color);                             /*Icon color adapts */
 }
 
 /* Bold title under each item */
@@ -378,13 +377,16 @@ body {
   margin-top: 8px;
   font-weight: bold;
   font-size: 14px;
+  color: var(--text-color);                             /* Title color adapts */
 }
 
 /* Small subtitle text (like artist) */
 .library-item .subtitle {
   font-size: 12px;
-  color: rgba(255,255,255,0.7);                         /* Light gray */
+  color: var(--text-color);                             /* Subtitle color adapts */
+  opacity: 0.7;                                          /*  Slight fade for subtext */
 }
+
 
 /* === RAP PAGE HEADER SECTION === */
 .rap-header {
@@ -603,29 +605,52 @@ body {
   display: flex;
   align-items: center;
   gap: 10px;                                     /* Space between icon and text */
+  background: var(--card-bg);                    /* ✅ Adaptive card background */
+  color: var(--text-color);                      /* ✅ Adaptive text color */
+  padding: 6px;
+  border-radius: 8px;
+  transition: transform 0.2s ease, background-color 0.2s ease;
 }
 
 /* Icon for the album */
 .fav-item .icon {
   width: 30px;
   height: 30px;
-  border: 2px solid var(--white);
+  border: 2px solid var(--border-color);         /* Adaptive border */
   border-radius: 4px;
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: 16px;
+  color: var(--text-color);                      /* Icon color adapts */
 }
+
+/* Album name (top right) */
+.fav-item .title {
+  font-size: 16px;
+  font-weight: bold;
+  color: var(--text-color);                      /* Title adapts to theme */
+}
+
+/* Artist name (under title) */
+.fav-item .artist {
+  font-size: 14px;
+  color: var(--text-color);                      /* Artist name adapts */
+  opacity: 0.6;                                   /*  Slightly faded for subtext */
+}
+
 
 /* === QUEUE SECTION === */
 .queue {
   margin-bottom: 30px;
+  color: var(--text-color);                    /*  Theme-aware text */
 }
 
 /* Section heading */
 .queue h2 {
   font-size: 28px;
   margin-bottom: 15px;
+  color: var(--text-color);                    /*  Heading text adapts */
 }
 
 /* Each item in the queue */
@@ -634,8 +659,29 @@ body {
   align-items: center;
   gap: 10px;
   margin-bottom: 12px;
-  color: rgba(255,255,255,0.9);                  /* Slightly faded white */
+  color: var(--text-color);                    /*  Item text adapts */
+  opacity: 0.9;                                /*  Slight fade effect */
 }
+
+/* Icon styles for queue */
+.queue-item .icon,
+.queue-item .song-icon {
+  width: 30px;
+  height: 30px;
+  border: 2px solid var(--border-color);       /*  Adaptive border */
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  color: var(--text-color);                    /* Adaptive icon color */
+}
+
+/* Music note icon inside the box */
+.queue-item .icon::before {
+  content: "♪";
+}
+
 
 /* Icon styles for queue */
 .queue-item .icon,
@@ -658,12 +704,14 @@ body {
 /* === NEW SONGS AND ALBUMS === */
 .new-for-you {
   margin-bottom: 30px;
+  color: var(--text-color);                    /* ✅ Overall text adapts */
 }
 
 /* Section heading */
 .new-for-you h2 {
   font-size: 28px;
   margin-bottom: 15px;
+  color: var(--text-color);                    /* ✅ Heading adapts */
 }
 
 /* Grid of new items */
@@ -675,8 +723,8 @@ body {
 /* Each card */
 .new-card {
   flex: 1;
-  background: var(--white);
-  color: var(--black);
+  background: var(--card-bg);                   /* ✅ Card background adapts */
+  color: var(--text-color);                     /* ✅ Text color adapts */
   border-radius: 12px;
   overflow: hidden;
   position: relative;
@@ -705,12 +753,15 @@ body {
   font-weight: bold;
   margin-bottom: 8px;
   font-size: 16px;
+  color: var(--text-color);                    /* ✅ Title adapts */
 }
 
 /* Artist name */
 .new-card .info .artist {
   font-size: 14px;
   margin-bottom: 12px;
+  color: var(--text-color);                    /* ✅ Artist name adapts */
+  opacity: 0.7;
 }
 
 /* Preview button */
@@ -719,22 +770,22 @@ body {
   align-items: center;
   gap: 8px;
   padding: 8px 12px;
-  border: 2px solid var(--black);
+  border: 2px solid var(--border-color);       /* ✅ Adaptive border */
   border-radius: 20px;
   text-decoration: none;
-  color: var(--black);
+  color: var(--text-color);                    /* ✅ Adaptive button text */
   font-size: 14px;
   position: absolute;
   bottom: 15px;
   left: 15px;
-  background: var(--white);
+  background: var(--card-bg);                  /* ✅ Adaptive button background */
   transition: background 0.2s, color 0.2s;
 }
 
-/* Hover: switch to black background, white text */
+/* Hover: switch to opposite theme */
 .new-card .preview-btn:hover {
-  background: var(--black);
-  color: var(--white);
+  background: var(--text-color);               /* ✅ Invert colors */
+  color: var(--bg-color);
 }
 
 /* Play icon before text */
@@ -742,6 +793,7 @@ body {
   content: "▶";
   font-size: 14px;
 }
+
 
 /* Subtitle like "Because you like Anna Wise" */
 .new-for-you h3 {
@@ -751,7 +803,7 @@ body {
 }
 
 
-/* === ABOUT THE ARTIST BOX (used on artist page) === */
+/* === ABOUT THE ARTIST BOX  === */
 .about-artist {
   background: var(--white);                    /* White background */
   color: var(--black);                         /* Black text */
@@ -798,12 +850,13 @@ body {
   left: var(--sidebar-width);                  /* Leave space for sidebar */
   right: 0;
   height: 60px;
-  background: var(--black);
-  border-top: 1px solid var(--white);
+  background: var(--bg-color);                 /* ✅ Adaptive background */
+  border-top: 1px solid var(--border-color);   /* ✅ Adaptive border */
   display: flex;
   align-items: center;
   padding: 0 20px;
   z-index: 100;
+  color: var(--text-color);                    /* ✅ Adaptive text */
 }
 
 /* Song details area */
@@ -818,31 +871,34 @@ body {
 .now-playing-bar .song-info .thumbnail {
   width: 40px;
   height: 40px;
-  border: 2px solid var(--white);
+  border: 2px solid var(--border-color);       /* ✅ Adaptive border */
   border-radius: 4px;
-  background: #555;
+  background: var(--card-bg);                  /* ✅ Adaptive thumbnail background */
   display: flex;
   align-items: center;
   justify-content: center;
+  color: var(--text-color);                    /* ✅ Icon adapts */
 }
 
 /* Music note symbol */
 .now-playing-bar .song-info .thumbnail::before {
   content: "♪";
   font-size: 18px;
-  color: var(--white);
+  color: var(--text-color);
 }
 
 /* Song title */
 .now-playing-bar .song-info .title {
   font-size: 16px;
   font-weight: bold;
+  color: var(--text-color);
 }
 
 /* Artist name under song title */
 .now-playing-bar .song-info .artist {
   font-size: 14px;
-  color: rgba(255,255,255,0.7);                /* Light gray */
+  color: var(--text-color);
+  opacity: 0.7;                                /* ✅ Faded effect */
 }
 
 /* Control buttons (play, skip, etc.) */
@@ -851,12 +907,14 @@ body {
   align-items: center;
   gap: 20px;
   font-size: 20px;
+  color: var(--text-color);
 }
 
 /* Each control icon is clickable */
 .now-playing-bar .controls .btn {
   cursor: pointer;
 }
+
 
 /* === LOGIN PAGE (full-screen centered login box) === */
 .login-page {
@@ -1223,6 +1281,9 @@ body {
   font-size: 14px;
   position: relative;
   bottom: 0;
+  background: var(--bg-color);
+  color: var(--text-color);  
+  border-top: 1px solid var(--border-color);
 }
 
 /* Footer layout container */
@@ -1236,7 +1297,7 @@ body {
   gap: 20px;
 }
 
-/* “Because you like…” label (gray no-bubble version) */
+/* “Because you like…” label  */
 .new-card-large .cover .like-label {
   background: none !important;
   border: none !important;
@@ -1249,7 +1310,7 @@ body {
   left: auto; /* override any default left */
 }
 
-/* Icon hover cleanup (no underline) */
+/* Icon hover cleanup  */
 .topbar .icon-camera {
   text-decoration: none !important;
 }
