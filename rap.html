@@ -82,7 +82,7 @@
           <div class="scroll-wrapper">
             
             <div class="new-grid">
-              <!--uses css grid fo good resposiveness-->
+              <!--uses css grid fo good resposiveness which repeats for each card-->
               <div class="new-card new-card-large">
                 <div class="cover" style="background-image: url('images/Throne\ of\ Broken\ Glory.png');">
                   <div class="overlay-top">
@@ -127,23 +127,35 @@
         </div>
       </div>
   
-      <!--FOOTER-->
-    <footer class="site-footer">
-    <div class="footer-content">
-      <p>&copy; 2025 SPOTIFY. All rights reserved.</p>
-    </div>
-  </footer>
+      <!-- FOOTER WITH SOCIAL MEDIA LINKS -->
+<footer style="text-align: center; padding: 20px; border-top: 1px solid var(--border-color); margin-top: 40px;">
+  <p>&copy; 2025 SPOTIFY. All rights reserved.</p>
+  <a href="https://instagram.com" target="_blank" style="margin: 0 10px;" aria-label="Instagram">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" 
+      alt="Instagram logo" width="30" height="30" style="vertical-align: middle;">
+  </a>
+  <a href="https://x.com" target="_blank" style="margin: 0 10px;" aria-label="X (formerly Twitter)">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b7/X_logo.jpg/1024px-X_logo.jpg" 
+        alt="X (Twitter) logo" width="30" height="30" style="vertical-align: middle;">
+  </a>
+</footer>
 <script>
-  // Set theme on load
-  if (localStorage.getItem('theme') === 'light') {
-    document.body.classList.add('light-mode');
-  }
-
-  //toggels between light and dark
+    //storage for infor for lightmode
   function toggleTheme() {
-    document.body.classList.toggle('light-mode');
-    localStorage.setItem('theme', document.body.classList.contains('light-mode') ? 'light' : 'dark');
-  }
+  document.body.classList.toggle('light-mode');
+  const theme = document.body.classList.contains('light-mode') ? 'light' : 'dark';
+  localStorage.setItem('theme', theme);
+  
+  // Update button text
+  const button = document.querySelector('button[onclick="toggleTheme()"]');
+  button.textContent = theme === 'light' ? 'Toggle Dark Mode' : 'Toggle Light Mode';
+}
+
+// Initialize theme and button text on load
+if (localStorage.getItem('theme') === 'light') {
+  document.body.classList.add('light-mode');
+  document.querySelector('button[onclick="toggleTheme()"]').textContent = 'Toggle Dark Mode';
+}
 </script>
 </body>
 </html>
