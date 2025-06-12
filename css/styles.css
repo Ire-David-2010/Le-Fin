@@ -1,85 +1,158 @@
-
+/* Define main color variables for dark and light mode */
 :root {
-  --bg-color: #000;
-  --text-color: #fff;
-  --card-bg: #111;
-  --border-color: #fff;
-  --accent-color: #ff4c4c;
+  --bg-color: #000;              /* Background color for dark mode */
+  --text-color: #fff;            /* Main text color for dark mode */
+  --card-bg: #111;               /* Background for cards in dark mode */
+  --border-color: #fff;          /* Border color for elements in dark mode */
+  --accent-color: #ff4c4c;       /* Highlight color (used for red accents) */
+  --sidebar-bg: #000;            /* Sidebar background in dark mode */
+  --topbar-bg: #000;             /* Topbar background in dark mode */
+  --now-playing-bg: #000;        /* Background for now playing bar in dark mode */
 }
 
+/* Variables for light mode (applies only when .light-mode is on the <body>) */
 body.light-mode {
-  --bg-color: #f4f4f4;
-  --text-color: #111;
-  --card-bg: #fff;
-  --border-color: #000;
-  --accent-color: #c62828;
+  --bg-color: #f4f4f4;           /* Background color for light mode */
+  --text-color: #111;            /* Text color for light mode */
+  --card-bg: #fff;               /* Card background in light mode */
+  --border-color: #000;          /* Border color in light mode */
+  --accent-color: #c62828;       /* Red accent for light mode */
+  --sidebar-bg: #f4f4f4;         /* Sidebar background for light mode */
+  --topbar-bg: #f4f4f4;          /* Topbar background for light mode */
+  --now-playing-bg: #f4f4f4;     /* Now playing bar background in light mode */
 }
 
+/* Apply theme variables to sidebar, topbar, and now playing bar */
+.sidebar {
+  background: var(--sidebar-bg); /* Uses light or dark based on body class */
+}
+
+.topbar {
+  background: var(--topbar-bg);  /* Uses light or dark based on body class */
+}
+
+.now-playing-bar {
+  background: var(--now-playing-bg); /* Light or dark now playing bar */
+}
+
+/* Set general body styles based on theme */
 body {
-  background: var(--bg-color);
-  color: var(--text-color);
-  font-family: var(--font-sans);
-  overflow-x: hidden;
+  background: var(--bg-color);   /* Background based on current mode */
+  color: var(--text-color);      /* Text color based on current mode */
+  letter-spacing: 0.3px;         /* Adds space between letters */
+  word-spacing: 0.6px;           /* Adds space between words */
+  line-height: 1.6;              /* Controls spacing between lines of text */
 }
 
+/* Headings spacing (h1–h6) */
+h1, h2, h3, h4, h5, h6 {
+  letter-spacing: 0.5px;
+  word-spacing: 0.6px;
+  line-height: 1.4;
+}
+
+/* Small section headers like "Library", "Favorites", etc. */
+.main-content h1,
+.favorites h2,
+.queue h2,
+.new-for-you h2,
+.about-artist .info h2 {
+  letter-spacing: 0.4px;
+  word-spacing: 0.5px;
+  line-height: 1.3;
+}
+
+/* Smaller subtitle text like artist names or extra info */
+.library-item .subtitle,
+.new-for-you h3,
+.fav-list .fav-item .artist,
+.now-playing-bar .song-info .artist,
+.login-container .forgot-password {
+  letter-spacing: 0.4px;
+  word-spacing: 0.4px;
+  line-height: 1.5;
+}
+
+/* Buttons and clickable items like the login button and theme toggle */
+.toggle-theme-btn,
+.preview-btn,
+.login-container .btn-login {
+  letter-spacing: 0.6px;
+  word-spacing: 0.8px;
+}
+
+/* Toggle light/dark theme button */
 .toggle-theme-btn {
-  margin-left: auto;
-  padding: 6px 12px;
-  border: 2px solid var(--text-color);
+  margin-left: auto;                  /* Pushes button to the right */
+  background: none;                   /* Transparent background */
+  color: var(--text-color);           /* Uses theme text color */
+  border: 2px solid var(--text-color);/* Outline uses theme color */
+  padding: 6px 12px;                  /* Space inside button */
+  border-radius: 20px;                /* Rounded button corners */
+  cursor: pointer;                    /* Pointer cursor on hover */
+  transition: background 0.3s, color 0.3s; /* Smooth color transition */
+}
+
+/* Light mode version of the toggle */
+body.light-mode .toggle-theme-btn {
+  background: none;
   color: var(--text-color);
-  border-radius: 20px;
-  background: transparent;
-  cursor: pointer;
-  transition: background 0.3s, color 0.3s;
 }
 
-body.light-mode .toggle-theme-btn:hover {
-  background: var(--text-color);
-  color: var(--bg-color);
+/* Hover effect for theme toggle */
+.toggle-theme-btn:hover {
+  background: var(--text-color);      /* Fills button with theme text color */
+  color: var(--bg-color);             /* Text turns into theme background color */
 }
 
 
+
+/* Import Google Fonts for headers and other text */
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@500;700&display=swap');
-
 @import url('https://fonts.googleapis.com/css2?family=Archivo+Black&display=swap');
 
+/* Extra root variables for accent and light/dark background switching */
 :root {
-  --accent-red: #ff4c4c;
+  --accent-red: #ff4c4c;              /* Bright red accent color */
 
-  /* Dark Theme Defaults */
-  --background-color: #000000;
-  --text-color: #ffffff;
+  /* Dark theme default values */
+  --background-color: #000000;        /* Full black background */
+  --text-color: #ffffff;              /* White text for dark mode */
 
-  /* Light Theme (used only when .light-mode class is added to <body>) */
-  --background-color-light: #f4f4f4;
-  --text-color-light: #000000;
+  /* Light theme fallback variables */
+  --background-color-light: #f4f4f4;  /* Light gray for light mode */
+  --text-color-light: #000000;        /* Dark text for light mode */
 }
 
+/* Base styles for body tag */
 body {
-  background-color: var(--background-dark);
-  color: var(--text-light);
+  background-color: var(--background-dark); /* ← This var isn’t declared. Consider fixing. */
+  color: var(--text-light);                 /* ← Also undeclared. Should be --text-color. */
   font-family: 'Poppins', sans-serif;
 }
 
+/* Heading text styles */
 h1, h2, h3, h4, h5, h6 {
   font-family: 'Poppins', sans-serif;
-  color: var(--accent-red);
-}
-/* GLOBAL FOR ALL WEBPAGES*/
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+  color: var(--accent-red); /* Make all headings red */
 }
 
+/* GLOBAL RESET: Applies to all elements */
+* {
+  margin: 0;              /* Remove default margin */
+  padding: 0;             /* Remove default padding */
+  box-sizing: border-box;/* Ensures consistent sizing */
+}
+
+/* More color and layout variables */
 :root {
-  --sidebar-width: 80px;
-  --topbar-height: 60px;
-  --black: #000;
-  --white: #ffffff;
+  --sidebar-width: 80px;                    /* Sidebar thickness */
+  --topbar-height: 60px;                    /* Top bar height */
+  --black: #000;                            /* Solid black */
+  --white: #ffffff;                         /* Solid white */
   --font-sans: 'Helvetica Neue', Arial, sans-serif;
 
-  /* Genre Card Colors */
+  /* Custom colors for each music genre card */
   --color-rap: #8CBF9F;
   --color-rnb: #B96CB0;
   --color-rock: #354E30;
@@ -88,47 +161,49 @@ h1, h2, h3, h4, h5, h6 {
   --color-jpop: #A33C11;
 }
 
+/* Make page take full height */
 html, body {
   height: 100%;
 }
 
+/* Set default styles again — some are overridden by previous body tag */
 body {
-  background: var(--black);
-  color: var(--white);
-  font-family: var(--font-sans);
-  overflow-x: hidden;
+  background: var(--black);         /* Black background */
+  color: var(--white);              /* White text */
+  font-family: var(--font-sans);    /* Use fallback font */
+  overflow-x: hidden;               /* Prevent sideways scroll */
 }
 
-
-/* Hides scrollbars */
+/* Hide all scrollbars for a clean look */
 ::-webkit-scrollbar {
   width: 0;
   background: transparent;
 }
 
-/* SIDEBAR*/
+/* SIDEBAR STYLING — Vertical menu on the left side */
 .sidebar {
-  position: fixed;
+  position: fixed;                    /* Fixed so it doesn't scroll */
   top: 0;
   left: 0;
-  width: var(--sidebar-width);
-  height: 100vh;
-  background: var(--black);
+  width: var(--sidebar-width);        /* Uses the sidebar width variable */
+  height: 100vh;                      /* Full height of the screen */
+  background: var(--black);          /* Background color (black) */
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  flex-direction: column;            /* Stack icons vertically */
+  align-items: center;               /* Center icons horizontally */
   padding-top: 20px;
-  border-right: 1px solid var(--white);
-  z-index: 100;
+  border-right: 1px solid var(--white); /* White border line */
+  z-index: 100;                      /* Stays above everything else */
 }
 
+/* Sidebar logo and profile icons */
 .sidebar .logo,
 .sidebar .profile {
   width: 40px;
   height: 40px;
   margin-bottom: 30px;
-  border: 2px solid var(--white);
-  border-radius: 50%;
+  border: 2px solid var(--white);    /* White outline */
+  border-radius: 50%;                /* Make them circular */
   display: flex;
   align-items: center;
   justify-content: center;
@@ -136,19 +211,22 @@ body {
   color: var(--white);
 }
 
+/* Custom "S" logo with Archivo Black font */
 .sidebar .logo::before {
-  content: "S";
-  font-family: 'Archivo Black', sans-serif;
+  content: "S";                             /* Adds the letter S */
+  font-family: 'Archivo Black', sans-serif !important;
   font-size: 16px;
-  color: #EF1C1C;
+  color: #EF1C1C;                           /* Bright red */
   letter-spacing: 2px;
-  text-decoration: none !important;
+  text-decoration: none !important;         /* No underline */
 }
 
+/* Make sure clicking the logo doesn’t show underline */
 .sidebar .logo {
   text-decoration: none !important;
 }
 
+/* General sidebar icon styles (music notes, albums, etc.) */
 .sidebar .nav-icon {
   width: 45px;
   height: 45px;
@@ -160,73 +238,80 @@ body {
   justify-content: center;
   font-size: 20px;
   color: var(--white);
-  cursor: pointer;
+  cursor: pointer;                     /* Pointer cursor on hover */
 }
 
+/* Special style for the active (Library) icon */
 .sidebar .nav-icon:nth-child(3) {
-  /* highlight the library icon in white background and black note */
-  background: var(--white);
-  color: var(--black);
+  background: var(--white);           /* Fill with white */
+  color: var(--black);                /* Text becomes black */
 }
 
-/* TOPBAR*/
+
+/* === TOPBAR (horizontal bar across top) === */
 .topbar {
-  position: fixed;
+  position: fixed;                            /* Always stays at the top */
   top: 0;
-  left: var(--sidebar-width);
+  left: var(--sidebar-width);                 /* Starts where the sidebar ends */
   right: 0;
-  height: var(--topbar-height);
-  background: var(--black);
-  border-bottom: 1px solid var(--white);
+  height: var(--topbar-height);               /* Use variable height */
+  background: var(--black);                   /* Black background */
+  border-bottom: 1px solid var(--white);      /* Thin white line under topbar */
   display: flex;
   align-items: center;
   padding: 0 20px;
-  z-index: 90;
+  z-index: 90;                                /* Stacks above most elements */
 }
 
+/* === SEARCH BAR inside topbar === */
 .topbar .search-container {
-  flex: 1;
-  max-width: 600px;
-  margin: 0 auto;
+  flex: 1;                                     /* Takes up available space */
+  max-width: 600px;                            /* Don't let it stretch too far */
+  margin: 0 auto;                              /* Center it */
   position: relative;
 }
 
+/* Input box styling */
 .topbar .search-container input {
   width: 100%;
   height: 36px;
-  padding: 0 45px 0 40px;
+  padding: 0 45px 0 40px;                      /* Add space for icons */
   background: none;
-  border: 2px solid var(--white);
-  border-radius: 20px;
+  border: 2px solid var(--white);              /* White outline */
+  border-radius: 20px;                         /* Rounded edges */
   color: var(--white);
   font-size: 14px;
   outline: none;
 }
 
+/* Placeholder text in search */
 .topbar .search-container input::placeholder {
-  color: rgba(255, 255, 255, 0.6);
+  color: rgba(255, 255, 255, 0.6);             /* Light gray placeholder */
 }
 
+/* Camera and search icons inside search bar */
 .topbar .search-container .icon-camera,
 .topbar .search-container .icon-search {
   position: absolute;
   top: 50%;
-  transform: translateY(-50%);
+  transform: translateY(-50%);                 /* Center vertically */
   width: 20px;
   height: 20px;
   color: var(--white);
   font-size: 18px;
 }
 
+/* Camera icon on the left */
 .topbar .search-container .icon-camera {
   left: 12px;
 }
 
+/* Magnifying glass icon on the right */
 .topbar .search-container .icon-search {
   right: 12px;
 }
 
-/* Profile icon on right */
+/* Profile icon on the far right side of topbar */
 .topbar .profile-top {
   width: 40px;
   height: 40px;
@@ -240,156 +325,176 @@ body {
   color: var(--white);
 }
 
-/*MAIN CONTENT AREA*/
+/* === MAIN PAGE CONTENT AREA === */
 .main-content {
-  margin-top: var(--topbar-height);
-  margin-left: var(--sidebar-width);
+  margin-top: var(--topbar-height);             /* Push content below topbar */
+  margin-left: var(--sidebar-width);            /* Avoid overlapping sidebar */
   padding: 20px;
-  min-height: calc(100vh - var(--topbar-height));
-  color: var(--white);
+  min-height: calc(100vh - var(--topbar-height)); /* Fill screen under topbar */
+  color: var(--white);                          /* Default white text */
 }
 
-/* Large heading style*/
+/* Large heading in content area */
 .main-content h1 {
   font-size: 48px;
   margin-bottom: 20px;
 }
 
-/* LIBRARY PAGE*/
+
+/* === LIBRARY PAGE GRID === */
 .library-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
-  gap: 30px;
+  display: grid;                                        /* Use CSS Grid layout */
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); /* Auto-fit columns */
+  gap: 30px;                                             /* Space between items */
   margin-top: 10px;
 }
 
+/* Each item inside the library */
 .library-item {
-  text-align: center;
+  text-align: center;                                    /* Center text under image */
 }
 
+/* Album or playlist cover box */
 .library-item .cover {
   width: 120px;
   height: 120px;
-  border: 2px solid var(--white);
-  border-radius: 8px;
+  border: 2px solid var(--white);                       /* White outline */
+  border-radius: 8px;                                   /* Rounded corners */
   margin: 0 auto;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
+/* Optional: symbol or icon inside the cover box */
 .library-item .cover::before {
-  content: ""; 
+  content: "";                                          /* Placeholder, can be set */
   font-size: 36px;
   color: var(--white);
 }
 
+/* Bold title under each item */
 .library-item .title {
   margin-top: 8px;
   font-weight: bold;
   font-size: 14px;
 }
 
+/* Small subtitle text (like artist) */
 .library-item .subtitle {
   font-size: 12px;
-  color: rgba(255,255,255,0.7);
+  color: rgba(255,255,255,0.7);                         /* Light gray */
 }
 
-/*RAP PAGE*/
+/* === RAP PAGE HEADER SECTION === */
 .rap-header {
   width: 100%;
-  background: var(--color-rap);
+  background: var(--color-rap);                         /* Themed background */
   border-radius: 12px;
   padding: 40px 30px;
   position: relative;
   margin-bottom: 40px;
 }
 
+/* Huge heading text inside rap header */
 .rap-header h1 {
   font-size: 60px;
   color: var(--white);
 }
 
+/* Heading for new singles section */
 .new-singles-title {
-  font-size: 24px;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 700;
+  color: #ff4c4c;                                       /* Bright red accent */
+  font-size: 28px;
+  letter-spacing: 0.5px;
   margin-bottom: 20px;
 }
 
+/* Layout for new singles cards */
 .new-singles-grid {
   display: flex;
-  gap: 20px;
+  gap: 20px;                                             /* Spacing between cards */
 }
 
+/* === ALBUM CARD STYLE === */
 .album-card {
-  flex: 1;
+  flex: 1;                                               /* Let each card expand equally */
   background: var(--white);
   color: var(--black);
   border-radius: 12px;
-  overflow: hidden;
+  overflow: hidden;                                      /* Clip overflowing children */
   position: relative;
 }
 
+/* Album artwork */
 .album-card .cover {
   width: 100%;
   height: 200px;
-  background-size: cover;
-  background-position: center;
+  background-size: cover;                                /* Cover whole box */
+  background-position: center;                           /* Center the image */
 }
 
-
-
+/* Info box below the album art */
 .album-card .info {
   padding: 15px;
 }
 
+/* Album title */
 .album-card .info .name {
   font-weight: bold;
   margin-bottom: 8px;
   font-size: 16px;
 }
 
+/* Artist name under the title */
 .album-card .info .artist {
   font-size: 14px;
   margin-bottom: 12px;
 }
 
+/* Preview button on album card */
 .album-card .preview-btn {
   display: inline-flex;
   align-items: center;
   gap: 8px;
   padding: 8px 12px;
-  border: 2px solid var(--black);
-  border-radius: 20px;
+  border: 2px solid var(--black);                        /* Black border */
+  border-radius: 20px;                                   /* Rounded pill shape */
   text-decoration: none;
   color: var(--black);
   font-size: 14px;
   position: absolute;
   bottom: 15px;
   left: 15px;
-  background: var(--white);
-  transition: background 0.2s, color 0.2s;
+  background: var(--white);                              /* White background */
+  transition: background 0.2s, color 0.2s;                /* Smooth hover */
 }
 
+/* Hover: invert button colors */
 .album-card .preview-btn:hover {
   background: var(--black);
   color: var(--white);
 }
 
+/* Adds play symbol before button text */
 .album-card .preview-btn::before {
   content: "▶";
   font-size: 14px;
 }
 
-/* GENRES PAGE*/
-/* GENRES PAGE */
+
+/* === GENRES PAGE GRID === */
 .genres-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-template-rows: repeat(3, 120px);
-  gap: 20px;
+  display: grid;                                        /* Use grid layout */
+  grid-template-columns: 1fr 1fr;                       /* Two columns */
+  grid-template-rows: repeat(3, 120px);                 /* 3 rows, each 120px high */
+  gap: 20px;                                            /* Spacing between cards */
   margin-top: 20px;
 }
 
+/* === GENRE CARD STYLING === */
 .genre-card {
   position: relative;
   border-radius: 12px;
@@ -397,42 +502,45 @@ body {
   display: flex;
   align-items: center;
   padding-left: 20px;
-  transition: transform 0.3s ease; /* Card hover effect */
+  transition: transform 0.3s ease;                      /* Smooth zoom effect */
   text-decoration: none;
   color: inherit;
 }
 
-/* Hover scale effect on entire card */
+/* On hover, scale card up slightly */
 .genre-card:hover {
   transform: scale(1.05);
 }
 
-/* Hover dark overlay */
+/* Transparent dark overlay appears on hover */
 .genre-card::before {
   content: "";
   position: absolute;
-  inset: 0;
-  background: rgba(0, 0, 0, 0);
+  inset: 0;                                             /* Cover full card */
+  background: rgba(0, 0, 0, 0);                         /* Start transparent */
   transition: background 0.3s ease;
   z-index: 0;
 }
 
+/* Darken the card slightly on hover */
 .genre-card:hover::before {
-  background: rgba(0, 0, 0, 0.2);
+  background: rgba(0, 0, 0, 0.2);                       /* Add slight black overlay */
 }
 
+/* Big text inside genre card */
 .genre-card h2 {
   font-size: 36px;
   color: var(--white);
   z-index: 1;
-  transition: text-shadow 0.3s ease; /* Text glow on hover */
+  transition: text-shadow 0.3s ease;                    /* Glowing effect */
 }
 
+/* Glow text when hovered */
 .genre-card:hover h2 {
   text-shadow: 0 0 10px white;
 }
 
-/* Each of the six genre backgrounds */
+/* === BACKGROUNDS FOR EACH GENRE === */
 .genre-rap   { background: var(--color-rap); }
 .genre-rnb   { background: var(--color-rnb); }
 .genre-rock  { background: var(--color-rock); }
@@ -440,23 +548,24 @@ body {
 .genre-afro  { background: var(--color-afro); }
 .genre-jpop  { background: var(--color-jpop); }
 
-/* Overlapping images positioned absolutely inside each card */
+/* === ALBUM ART IMAGE INSIDE GENRE CARD === */
 .genre-card img {
   position: absolute;
   width: 120px;
   height: 120px;
   object-fit: cover;
   border-radius: 8px;
-  box-shadow: 0 5px 15px rgba(0,0,0,0.5);
-  transition: transform 0.3s ease; /* Image hover effect */
+  box-shadow: 0 5px 15px rgba(0,0,0,0.5);                /* Drop shadow effect */
+  transition: transform 0.3s ease;
   z-index: 1;
 }
 
+/* On hover, lift and zoom the image slightly */
 .genre-card:hover img {
   transform: translateY(-10px) scale(1.1) rotate(0deg);
 }
 
-/* Image positioning for each genre */
+/* === IMAGE POSITIONING FOR EACH CARD === */
 .genre-rap img   { top: -20px; left: calc(100% - 100px); transform: rotate(-15deg); }
 .genre-rnb img   { top: -15px; left: calc(100% - 110px); transform: rotate(20deg); }
 .genre-rock img  { top: -10px; left: calc(100% - 100px); transform: rotate(-10deg); }
@@ -464,37 +573,39 @@ body {
 .genre-afro img  { top: -25px; left: calc(100% - 100px); transform: rotate(-25deg); }
 .genre-jpop img  { top: -18px; left: calc(100% - 110px); transform: rotate(18deg); }
 
-/* HOME PAGE*/
-
-/* Container grid for Home page two columns */
+/* === HOME PAGE CONTAINER === */
 .home-container {
-  display: grid;
-  grid-template-columns: 2fr 1fr;
-  gap: 20px;
+  display: grid;                                /* Grid layout */
+  grid-template-columns: 2fr 1fr;                /* Two columns: main and side */
+  gap: 20px;                                     /* Spacing between columns */
 }
 
-/* FAVORITE ALBUMS & PLAYLISTS */
+/* === FAVORITE ALBUMS & PLAYLISTS === */
 .favorites {
   margin-bottom: 30px;
 }
 
+/* Section heading */
 .favorites h2 {
   font-size: 28px;
   margin-bottom: 15px;
 }
 
+/* List of favorite items */
 .fav-list {
   display: flex;
-  flex-wrap: wrap;
-  gap: 15px;
+  flex-wrap: wrap;                              /* Allow wrapping on smaller screens */
+  gap: 15px;                                     /* Space between each item */
 }
 
+/* Individual favorite item */
 .fav-item {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 10px;                                     /* Space between icon and text */
 }
 
+/* Icon for the album */
 .fav-item .icon {
   width: 30px;
   height: 30px;
@@ -506,28 +617,27 @@ body {
   font-size: 16px;
 }
 
-/*.fav-item .icon::before {
-  content: "♪";
-}
-
-/* QUEUE */
+/* === QUEUE SECTION === */
 .queue {
   margin-bottom: 30px;
 }
 
+/* Section heading */
 .queue h2 {
   font-size: 28px;
   margin-bottom: 15px;
 }
 
+/* Each item in the queue */
 .queue-item {
   display: flex;
   align-items: center;
   gap: 10px;
   margin-bottom: 12px;
-  color: rgba(255,255,255,0.9);
+  color: rgba(255,255,255,0.9);                  /* Slightly faded white */
 }
 
+/* Icon styles for queue */
 .queue-item .icon,
 .queue-item .song-icon {
   width: 30px;
@@ -540,26 +650,29 @@ body {
   font-size: 16px;
 }
 
+/* Music note icon inside the box */
 .queue-item .icon::before {
   content: "♪";
 }
-  
 
-/* New Songs and Albums for You*/
+/* === NEW SONGS AND ALBUMS === */
 .new-for-you {
   margin-bottom: 30px;
 }
 
+/* Section heading */
 .new-for-you h2 {
   font-size: 28px;
   margin-bottom: 15px;
 }
 
+/* Grid of new items */
 .new-grid {
   display: flex;
-  gap: 20px;
+  gap: 20px;                                     /* Space between cards */
 }
 
+/* Each card */
 .new-card {
   flex: 1;
   background: var(--white);
@@ -569,6 +682,7 @@ body {
   position: relative;
 }
 
+/* Cover image */
 .new-card .cover {
   width: 100%;
   height: 250px;
@@ -576,25 +690,30 @@ body {
   background-position: center;
 }
 
+/* Placeholder background if image not loaded */
 .new-card .cover.placeholder {
   background: #ccc;
 }
 
+/* Text content below cover */
 .new-card .info {
   padding: 15px;
 }
 
+/* Song or album name */
 .new-card .info .name {
   font-weight: bold;
   margin-bottom: 8px;
   font-size: 16px;
 }
 
+/* Artist name */
 .new-card .info .artist {
   font-size: 14px;
   margin-bottom: 12px;
 }
 
+/* Preview button */
 .new-card .preview-btn {
   display: inline-flex;
   align-items: center;
@@ -612,33 +731,37 @@ body {
   transition: background 0.2s, color 0.2s;
 }
 
+/* Hover: switch to black background, white text */
 .new-card .preview-btn:hover {
   background: var(--black);
   color: var(--white);
 }
 
+/* Play icon before text */
 .new-card .preview-btn::before {
   content: "▶";
   font-size: 14px;
 }
 
-/* Because you like Anna Wise text  */
+/* Subtitle like "Because you like Anna Wise" */
 .new-for-you h3 {
   font-size: 14px;
   color: rgba(255,255,255,0.4);
   margin-bottom: 10px;
 }
 
-/* UNTHINKABLE About the artist box  */
+
+/* === ABOUT THE ARTIST BOX (used on artist page) === */
 .about-artist {
-  background: var(--white);
-  color: var(--black);
+  background: var(--white);                    /* White background */
+  color: var(--black);                         /* Black text */
   border-radius: 12px;
   overflow: hidden;
   position: relative;
   margin-bottom: 30px;
 }
 
+/* Cover image for the artist */
 .about-artist .cover {
   width: 100%;
   height: 200px;
@@ -646,29 +769,33 @@ body {
   background-position: center;
 }
 
+/* Gray fallback background */
 .about-artist .cover.placeholder {
   background: #ccc;
 }
 
+/* Text content */
 .about-artist .info {
   padding: 15px;
 }
 
+/* Artist name heading */
 .about-artist .info h2 {
   font-size: 20px;
   margin-bottom: 8px;
 }
 
+/* Description or bio paragraph */
 .about-artist .info p {
   font-size: 14px;
-  color: rgba(0,0,0,0.7);
+  color: rgba(0,0,0,0.7);                      /* Gray text */
 }
 
-/* Bottom player bar across entire width */
+/* === BOTTOM PLAYER BAR === */
 .now-playing-bar {
   position: fixed;
   bottom: 0;
-  left: var(--sidebar-width);
+  left: var(--sidebar-width);                  /* Leave space for sidebar */
   right: 0;
   height: 60px;
   background: var(--black);
@@ -679,6 +806,7 @@ body {
   z-index: 100;
 }
 
+/* Song details area */
 .now-playing-bar .song-info {
   display: flex;
   align-items: center;
@@ -686,6 +814,7 @@ body {
   flex: 1;
 }
 
+/* Thumbnail icon */
 .now-playing-bar .song-info .thumbnail {
   width: 40px;
   height: 40px;
@@ -697,22 +826,26 @@ body {
   justify-content: center;
 }
 
+/* Music note symbol */
 .now-playing-bar .song-info .thumbnail::before {
   content: "♪";
   font-size: 18px;
   color: var(--white);
 }
 
+/* Song title */
 .now-playing-bar .song-info .title {
   font-size: 16px;
   font-weight: bold;
 }
 
+/* Artist name under song title */
 .now-playing-bar .song-info .artist {
   font-size: 14px;
-  color: rgba(255,255,255,0.7);
+  color: rgba(255,255,255,0.7);                /* Light gray */
 }
 
+/* Control buttons (play, skip, etc.) */
 .now-playing-bar .controls {
   display: flex;
   align-items: center;
@@ -720,11 +853,12 @@ body {
   font-size: 20px;
 }
 
+/* Each control icon is clickable */
 .now-playing-bar .controls .btn {
   cursor: pointer;
 }
 
-/*LOGIN PAGE STYLES*/
+/* === LOGIN PAGE (full-screen centered login box) === */
 .login-page {
   display: flex;
   align-items: center;
@@ -733,9 +867,10 @@ body {
   color: var(--white);
 }
 
+/* Login form container */
 .login-container {
   width: 320px;
-  background-color: rgba(17, 17, 17, 0.85); 
+  background-color: rgba(17, 17, 17, 0.85);    /* Slightly see-through black */
   border: 2px solid var(--white);
   border-radius: 12px;
   padding: 30px 25px;
@@ -743,24 +878,27 @@ body {
   text-align: center;
 }
 
+/* Main heading */
 .login-container h1 {
   font-size: 32px;
   margin-bottom: 25px;
   letter-spacing: 1px;
 }
 
+/* Label + input group */
 .login-container .input-group {
   margin-bottom: 20px;
   text-align: left;
-
 }
 
+/* Field label */
 .login-container .input-group label {
   display: block;
   font-size: 14px;
   margin-bottom: 5px;
 }
 
+/* Input field */
 .login-container .input-group input {
   width: 100%;
   height: 40px;
@@ -773,10 +911,12 @@ body {
   outline: none;
 }
 
+/* Placeholder inside input */
 .login-container .input-group input::placeholder {
   color: rgba(255, 255, 255, 0.6);
 }
 
+/* Login button */
 .login-container .btn-login {
   width: 100%;
   height: 45px;
@@ -790,68 +930,57 @@ body {
   transition: background 0.2s, color 0.2s;
 }
 
+/* Hover effect: invert colors */
 .login-container .btn-login:hover {
   background: var(--black);
   color: var(--white);
   border: 2px solid var(--white);
 }
 
-.login-container .forgot-password {
-  margin-top: 15px;
-  font-size: 13px;
-  color: rgba(255, 255, 255, 0.6);
-}
-
-.login-container .forgot-password a {
-  color: rgba(255, 255, 255, 0.8);
-  text-decoration: none;
-}
-
-.login-container .forgot-password a:hover {
-  text-decoration: underline;
-}
-
-/* Hide sidebar & topbar when on login.html */
+/* Hide sidebar/topbar when on login screen */
 .login-page .sidebar,
 .login-page .topbar {
   display: none;
 }
 
-/* --- VIDEO EMBED --- */
+/* === EMBEDDED VIDEO FRAME === */
 .video-container {
   margin-bottom: 20px;
 }
+
 .video-container iframe {
   width: 100%;
-  height: 200px;         /* adjust height as you like */
+  height: 200px;                                 /* Set desired height */
   border: none;
   border-radius: 12px;
 }
 
-/* --- SECTION DIVIDER --- */
+/* === SECTION DIVIDER LINE === */
 .section-divider {
   border: none;
   border-top: 1px solid rgba(255, 255, 255, 0.5);
   margin: 20px 0;
 }
 
-/* --- QUEUE (now lower) spacing --- */
+
+/* === SPACING ABOVE QUEUE === */
 .queue {
-  margin-top: 20px;     /* add space above queue */
+  margin-top: 20px; /* Creates space between sections */
 }
-/* ——— SIDEBAR TOOLTIP (flush right) ——— */
+
+/* === SIDEBAR ICON TOOLTIP === */
 .sidebar a {
   position: relative;
 }
 
-/* tooltip bubble */
+/* Tooltip content */
 .sidebar a::after {
-  content: attr(data-tooltip);
+  content: attr(data-tooltip); /* Uses the data-tooltip attribute */
   position: absolute;
-  left: 100%;              /* immediately to the right of the icon */
+  left: 100%; /* Right of the icon */
   top: 50%;
   transform: translateY(-50%);
-  margin-left: 4px;        /* small gap */
+  margin-left: 4px;
   background: var(--white);
   color: var(--black);
   padding: 4px 8px;
@@ -864,12 +993,12 @@ body {
   z-index: 200;
 }
 
-/* show on hover */
+/* Show tooltip on hover */
 .sidebar a:hover::after {
   opacity: 1;
 }
 
-/* ——— FAVORITE ALBUMS AND PLAYLIST ——— */
+/* === FAVORITE ALBUMS + PLAYLIST LAYOUT === */
 .fav-list .fav-item {
   display: grid;
   grid-template-columns: auto 1fr;
@@ -881,97 +1010,95 @@ body {
   align-items: center;
 }
 
-/* enlarge the album “icon” */
+/* Bigger album icon */
 .fav-list .fav-item .icon {
   grid-area: icon;
-  width: 50px;    /* adjust bigger or smaller as you like */
+  width: 50px;
   height: 50px;
   font-size: 32px;
 }
 
-/* album title to the right, top row */
+/* Album name (top right) */
 .fav-list .fav-item .title {
   grid-area: title;
   font-size: 16px;
   font-weight: bold;
 }
 
-/* artist name under the title, gray like “Because you like Anna Wise” */
+/* Artist name (under title) */
 .fav-list .fav-item .artist {
   grid-area: artist;
   font-size: 14px;
   color: rgba(255, 255, 255, 0.4);
 }
 
-/* ——— MORE SPACE BETWEEN FAVORITE ITEMS ——— */
+/* Extra space between favorites */
 .fav-list {
-  gap: 32px;  /* was 15px (or whatever your default), now more room between each item */
+  gap: 24px 48px; /* vertical then horizontal gap */
 }
 
-.fav-list {
-  /* first value = row gap, second = column gap */
-  gap: 24px 48px;
-}
-
+/* Embed video styling (repeated in case it's shared) */
 .video-container {
   margin-bottom: 20px;
 }
+
 .video-container iframe {
-  width: 100%;      /* fills the right-column width */
-  height: 200px;    
+  width: 100%;
+  height: 200px;
   border: none;
   border-radius: 12px;
 }
 
-/* ——— FAVORITE ALBUMS HOVER (DARK BG OPTIMIZED) ——— */
+/* === FAVORITES HOVER EFFECT === */
 .fav-list .fav-item {
-  /* add a bit of padding and rounding so the bg highlight looks nice */
   padding: 6px;
   border-radius: 8px;
   transition: transform 0.2s ease, background-color 0.2s ease;
 }
 
+/* When you hover over a favorite */
 .fav-list .fav-item:hover {
-  /* gentle lift */
-  transform: translateY(-3px);
-  /* very subtle white overlay */
-  background-color: rgba(214, 214, 214, 0.534);
+  transform: translateY(-3px); /* slight lift */
+  background-color: rgba(214, 214, 214, 0.534); /* light gray overlay */
 }
 
-/* add a bit of shadow under the icon on hover */
+/* Icon shadow when hovered */
 .fav-list .fav-item .icon {
   transition: filter 0.2s ease;
 }
 
 .fav-list .fav-item:hover .icon {
-  /* a soft, dark drop-shadow to make the icon pop */
   filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.6));
 }
 
-
-
-/* New Songs & Albums grid: three equal cards */
+/* === “NEW FOR YOU” GRID === */
 .new-for-you .new-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 20px;
 }
 
-/* Card container holds only the cover image and overlays */
+/* Card layout wrapper */
 .new-card {
   position: relative;
   overflow: hidden;
 }
 
-/* Full-bleed cover image (no white background) */
+/* Large image area */
 .new-card .cover {
   width: 100%;
-  height: 500px;           /* match your wireframe’s aspect ratio */
+  height: 500px;
   background-size: cover;
   background-position: center;
+  transition: transform 0.3s ease;
 }
 
-/* “Because you like…” badge inside first card */
+/* Slight zoom effect */
+.new-card:hover .cover {
+  transform: scale(1.05);
+}
+
+/* “Because you like…” text label */
 .new-card .like-label {
   position: absolute;
   top: 12px;
@@ -984,7 +1111,7 @@ body {
   z-index: 5;
 }
 
-/* Overlay top text + icon */
+/* Icon + text overlay at top */
 .new-card .overlay-top {
   position: absolute;
   top: 12px;
@@ -994,6 +1121,7 @@ body {
   gap: 10px;
 }
 
+/* Music icon */
 .new-card .overlay-top .icon {
   width: 30px;
   height: 30px;
@@ -1003,20 +1131,21 @@ body {
   justify-content: center;
 }
 
+/* Symbol inside icon */
 .new-card .overlay-top .icon::before {
   content: "♪";
 }
 
+/* Title + artist in overlay */
 .new-card .overlay-top .text .name {
   font-size: 18px;
   font-weight: bold;
 }
-
 .new-card .overlay-top .text .artist {
   font-size: 14px;
 }
 
-/* Preview button on the cover */
+/* PREVIEW BUTTON on cards */
 .new-card .preview-btn {
   position: absolute;
   bottom: 12px;
@@ -1038,8 +1167,7 @@ body {
   content: "▶";
 }
 
-
-/* LIKE LABEL (plain white text with drop-shadow) */
+/* LIKE LABEL – white version (non-overlay version) */
 .like-label {
   position: absolute;
   top: 12px;
@@ -1051,7 +1179,7 @@ body {
   z-index: 5;
 }
 
-/* OVERLAY TEXT + ICON (white) */
+/* TEXT OVERLAY COLORS – white for dark backgrounds */
 .overlay-top .icon {
   border-color: var(--white);
   color: var(--white);
@@ -1068,7 +1196,7 @@ body {
   text-shadow: 0 0 4px rgba(0,0,0,0.7);
 }
 
-/* PREVIEW BUTTON (white border + text) */
+/* Transparent preview button with hover flip */
 .preview-btn {
   background: transparent;
   color: var(--white);
@@ -1086,70 +1214,7 @@ body {
   color: var(--black);
 }
 
-/* hover*/
-
-.library-item {
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  cursor: pointer;
-}
-
-.library-item:hover {
-  transform: scale(1.05);
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
-}
-
-.sidebar a {
-  transition: transform 0.3s ease, filter 0.3s ease;
-}
-
-.sidebar a:hover {
-  transform: scale(1.15);
-  filter: brightness(1.2);
-}
-
-.search-container input {
-  transition: box-shadow 0.3s ease;
-}
-
-.search-container input:focus,
-.search-container input:hover {
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
-  outline: none;
-}
-
-[data-tooltip] {
-  position: relative;
-}
-
-[data-tooltip]:hover::after {
-  content: attr(data-tooltip);
-  position: absolute;
-  left: 100%;
-  top: 50%;
-  transform: translateY(-50%);
-  margin-left: 8px;
-  background: #222;
-  color: #fff;
-  padding: 4px 8px;
-  border-radius: 4px;
-  white-space: nowrap;
-  font-size: 12px;
-  pointer-events: none;
-  opacity: 1;
-  z-index: 10;
-}
-
-/* Base hover effect */
-.library-item {
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  cursor: pointer;
-}
-
-.library-item:hover {
-  transform: scale(1.05);
-}
-
-/* SITE FOOTER */
+/* === FOOTER STYLING === */
 .site-footer {
   background: var(--black);
   border-top: 1px solid var(--white);
@@ -1160,6 +1225,7 @@ body {
   bottom: 0;
 }
 
+/* Footer layout container */
 .footer-content {
   max-width: 1200px;
   margin: 0 auto;
@@ -1170,74 +1236,92 @@ body {
   gap: 20px;
 }
 
+/* “Because you like…” label (gray no-bubble version) */
 .new-card-large .cover .like-label {
   background: none !important;
-  border: none     !important;
+  border: none !important;
   color: rgba(255, 255, 255, 0.6) !important;
-  text-shadow: none     !important;
-}
-
-/* Final fix: gray, bubble-free “Because you like Anna Wise” with padding */
-.new-card.new-card-large .cover .like-label {
-  position: absolute;
-  top: 12px;
-  right: 12px;
-  background: none !important;
-  border: none     !important;
-  padding: 4px 8px !important;
-  color: #888888   !important;
   text-shadow: none !important;
+  padding: 4px 8px !important;
   z-index: 2;
+  top: 5px;
+  right: 12px;
+  left: auto; /* override any default left */
 }
 
-.new-card.new-card-large .cover .like-label {
-  right: 12px;   /* Pushes to right edge */
-  left: auto;    /* Overrides any 'left' positioning */
-  top: 5px;     /* Keeps it at the top */
-}
-
-
-/* Add this to your stylesheet */
+/* Icon hover cleanup (no underline) */
 .topbar .icon-camera {
-  text-decoration: none !important; /* Kills the underline */
+  text-decoration: none !important;
 }
-
 .topbar .icon-camera:hover {
-  text-decoration: none !important; /* No underline on hover */
+  text-decoration: none !important;
 }
-
-/* Add this to your CSS */
 .icon-camera:hover {
-  transform: scale(1.1);  /* Subtle grow effect */
+  transform: scale(1.1);
   opacity: 0.9;
 }
 
+
+/* === LIGHT MODE OVERRIDES === */
+
+/* Set light mode color variables when .light-mode is on the body */
 body.light-mode {
-  --background-color: var(--background-color-light);
-  --text-color: var(--text-color-light);
+  --background-color: var(--background-color-light); /* light gray background */
+  --text-color: var(--text-color-light);             /* black text */
 }
 
+/* Change sidebar and topbar backgrounds in light mode */
 body.light-mode .sidebar,
 body.light-mode .topbar {
-  background: var(--background-color-light);
-  border-color: var(--text-color-light);
+  background: var(--background-color-light); /* light gray background */
+  border-color: var(--text-color-light);     /* black border lines */
 }
 
+/* Adjust icons and borders in light mode to match black-on-light look */
 body.light-mode .sidebar .logo,
 body.light-mode .sidebar .profile,
 body.light-mode .sidebar .nav-icon,
 body.light-mode .topbar .profile-top,
 body.light-mode .topbar .search-container input {
-  border-color: var(--text-color-light);
-  color: var(--text-color-light);
+  border-color: var(--text-color-light);  /* black border */
+  color: var(--text-color-light);         /* black icons and text */
 }
 
+/* Keep headings red in light mode for contrast */
 body.light-mode h1, 
 body.light-mode h2, 
 body.light-mode h3 {
-  color: var(--accent-red);
+  color: var(--accent-red); /* same red as in dark mode */
 }
 
+/* Make logo letter red in light mode */
 body.light-mode .sidebar .logo::before {
-  color: var(--accent-red);
+  color: var(--accent-red); /* Spotify “S” stays red */
+}
+
+/* === HOVER EFFECTS FOR CARDS (ALBUMS, SONGS, ETC) === */
+
+/* Smooth hover zoom for cover art */
+.new-card .cover {
+  transition: transform 0.3s ease;
+}
+
+.new-card:hover .cover {
+  transform: scale(1.05); /* zooms in on hover */
+}
+
+/* === SIDEBAR HOVER EFFECTS === */
+.sidebar .nav-icon:hover,
+.sidebar .logo:hover,
+.sidebar .profile:hover {
+  background: rgba(255, 255, 255, 0.1);  /* Slight white tint */
+  transform: scale(1.05);                /* Slightly grow on hover */
+  transition: background 0.2s, transform 0.2s;
+}
+
+/* === LIBRARY ITEM HOVER EFFECT === */
+.library-item .cover:hover {
+  transform: scale(1.05);
+  transition: transform 0.3s ease;
+  box-shadow: 0 4px 12px rgba(255, 255, 255, 0.3); /* White glow effect */
 }
